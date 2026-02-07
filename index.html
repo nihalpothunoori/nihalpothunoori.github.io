@@ -35,35 +35,36 @@
             position: relative;
         }
 
-   .sidebar .img-wrapper {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-}
+        .sidebar .img-wrapper {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
 
-.sidebar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    display: block;
-}
+        .sidebar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
 
-.sidebar .pixel-circle-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 117%;
-    height: 117%;
-    background-image: url('/98948-200.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    filter: brightness(0) saturate(100%) invert(47%) sepia(96%) saturate(2327%) hue-rotate(200deg) brightness(101%) contrast(93%);
-    pointer-events: none;
-}
+        .sidebar .pixel-circle-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 117%;
+            height: 117%;
+            background-image: url('/98948-200.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: brightness(0) saturate(100%) invert(47%) sepia(96%) saturate(2327%) hue-rotate(200deg) brightness(101%) contrast(93%);
+            pointer-events: none;
+        }
+
         .sidebar h1 {
             font-size: 28px;
             color: #7ee787;
@@ -98,7 +99,7 @@
         }
 
         .intro-section {
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
 
         .projects-section {
@@ -127,6 +128,12 @@
         p {
             margin: 0 0 20px 0;
             color: #ffffff;
+        }
+
+        /* 👇 only new CSS */
+        .project-skills {
+            font-size: 0.85rem;
+            opacity: 0.85;
         }
 
         a {
@@ -183,14 +190,6 @@
                 text-align: center;
             }
 
-            .sidebar .img-wrapper {
-                margin: 0 auto;
-            }
-
-            .sidebar img {
-                max-width: 200px;
-            }
-
             .project {
                 flex-direction: column;
             }
@@ -203,9 +202,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <!-- Intro Section with Sidebar and About Me -->
         <div class="intro-wrapper">
-            <!-- Sidebar -->
             <div class="sidebar">
                 <div class="img-wrapper">
                     <img src="/nihal_pic.jpg" alt="Nihal Pothunoori">
@@ -219,60 +216,44 @@
                 <a href="/Nihal_Pothunoori_Resume.pdf" class="view-github">Resume</a>
             </div>
 
-            <!-- Main Content -->
             <div class="main-content">
-                <!-- Introduction Section -->
                 <section class="intro-section">
                     <h2>about me</h2>
                     <p>
                         I'm a University of Illinois (UIUC) student studying Computer Engineering.
                         I enjoy robotics, simulation and real-life, and am delving more into deep learning and AI for autonomy.
-                        My vision: robotics for the good of humanity; eg. improved Search & Rescue, factory automation, etc.
-                    </p>
-                    <p>
-                        Currently doing soft robotics research for <a href="http://daslab.illinois.edu/" target="_blank" rel="noopener noreferrer">DASLAB</a>, using diffusion-based path planning to identify backbone trajectories.
-                        We are also utilizing VLAs to identify areas for soft-arm bracing/wrapping in the environment.
-                    </p>
-                    <p>
-                        I work part-time as well, as a Web Developer for UIUC's College of Education.
                     </p>
                 </section>
             </div>
         </div>
 
-        <!-- Projects Section (Full Width) -->
         <section class="projects-section">
             <h2>projects</h2>
-            <!-- Project 1 -->
+
             <div class="project">
-                <img src="https://via.placeholder.com/400x250/0366d6/ffffff?text=Project+1+Screenshot" 
+                <img src="https://via.placeholder.com/400x250/0366d6/ffffff?text=Project+1+Screenshot"
                      alt="Project 1 Screenshot" class="project-image">
                 <div class="project-content">
                     <h3><a href="laundry-robot.html">Laundry Robot</a></h3>
                     <p>
                         A laundry robot that picks up clothing around my room.
                     </p>
-                    <p><strong>Technologies:</strong> ROS2, Machine Learning, Computer Vision</p>
+                    <p class="project-skills"><strong>Skills:</strong> ROS2, Machine Learning, Computer Vision</p>
                 </div>
             </div>
 
-            <!-- Project 2 -->
             <div class="project">
-                <img src="https://via.placeholder.com/400x250/28a745/ffffff?text=Project+2+Screenshot" 
+                <img src="https://via.placeholder.com/400x250/28a745/ffffff?text=Project+2+Screenshot"
                      alt="Project 2 Screenshot" class="project-image">
                 <div class="project-content">
                     <h3><a href="rubiks-cube-solver.html">Rubik's Cube Solver</a></h3>
                     <p>
                         Attempting to solve a Rubik's cube with a pair SO-101.
                     </p>
-                    <p><strong>Technologies:</strong> VLAs, Imitation Learning, Simulation Robotics</p>
+                    <p class="project-skills"><strong>Skills:</strong> VLAs, Imitation Learning, Simulation Robotics</p>
                 </div>
             </div>
         </section>
-
-        <!-- Footer -->
-        <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid #21262d; color: #8b949e; font-size: 14px;">
-        </footer>
     </div>
 </body>
 </html>
