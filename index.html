@@ -32,22 +32,33 @@
         .sidebar {
             width: 270px;
             flex-shrink: 0;
+            position: relative;
         }
-.sidebar img {
-    max-width: 100%;
-    border-radius: 0;
-    clip-path: polygon(
-        40% 0%, 60% 0%,
-        75% 10%, 90% 25%,
-        100% 40%, 100% 60%,
-        90% 75%, 75% 90%,
-        60% 100%, 40% 100%,
-        25% 90%, 10% 75%,
-        0% 60%, 0% 40%,
-        10% 25%, 25% 10%
-    );
-    box-shadow: 0 0 0 8px #539bf5;
-}
+
+        .sidebar .img-wrapper {
+            position: relative;
+            width: 270px;
+            height: 270px;
+        }
+
+        .sidebar img {
+            max-width: 100%;
+            border-radius: 50%;
+        }
+
+        .sidebar .pixel-circle-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 270px;
+            height: 270px;
+            background-image: url('/98948-200.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: brightness(0) saturate(100%) invert(47%) sepia(96%) saturate(2327%) hue-rotate(200deg) brightness(101%) contrast(93%);
+            pointer-events: none;
+        }
 
         .sidebar h1 {
             font-size: 28px;
@@ -168,6 +179,10 @@
                 text-align: center;
             }
 
+            .sidebar .img-wrapper {
+                margin: 0 auto;
+            }
+
             .sidebar img {
                 max-width: 200px;
             }
@@ -188,7 +203,10 @@
         <div class="intro-wrapper">
             <!-- Sidebar -->
             <div class="sidebar">
-                <img src="/nihal_pic.jpg" alt="Nihal Pothunoori">
+                <div class="img-wrapper">
+                    <img src="/nihal_pic.jpg" alt="Nihal Pothunoori">
+                    <div class="pixel-circle-overlay"></div>
+                </div>
                 <h1>Nihal Pothunoori</h1>
                 <a href="https://github.com/nihalpothunoori" class="view-github">Github</a>
                 <span class="sep"> / </span>
