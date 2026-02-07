@@ -35,11 +35,13 @@
         }
 .sidebar img {
     max-width: 100%;
-    border-radius: 50%;
+    clip-path: polygon(
+        50% 0%, 60% 5%, 70% 10%, 80% 20%, 90% 30%, 95% 40%, 
+        100% 50%, 95% 60%, 90% 70%, 80% 80%, 70% 90%, 60% 95%,
+        50% 100%, 40% 95%, 30% 90%, 20% 80%, 10% 70%, 5% 60%,
+        0% 50%, 5% 40%, 10% 30%, 20% 20%, 30% 10%, 40% 5%
+    );
     border: 8px solid #539bf5;
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
 }
 
         .sidebar h1 {
