@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
             font-size: 16px;
             line-height: 1.5;
-            color: #606c71;
+            color: #ffffff;
+            background-color: #0d1117;
             margin: 0;
             padding: 0;
         }
@@ -36,30 +37,35 @@
         .sidebar img {
             max-width: 100%;
             border-radius: 50%;
-            border: 1px solid #e5e5e5;
+            border: 1px solid #30363d;
         }
 
         .sidebar h1 {
             font-size: 28px;
-            color: #222;
+            color: #7ee787;
             font-weight: 700;
             margin: 20px 0 10px 0;
         }
 
         .sidebar p {
-            color: #606c71;
+            color: #ffffff;
             margin: 0 0 20px 0;
             font-size: 14px;
         }
 
         .sidebar .view-github {
-            color: #0366d6;
+            color: #539bf5;
             text-decoration: none;
             font-size: 14px;
         }
 
         .sidebar .view-github:hover {
+            color: #f9e3a8;
             text-decoration: underline;
+        }
+
+        .sidebar .sep {
+            color: #ffffff;
         }
 
         .main-content {
@@ -76,7 +82,7 @@
         }
 
         h1, h2, h3 {
-            color: #222;
+            color: #7ee787;
             font-weight: 700;
         }
 
@@ -85,7 +91,7 @@
             margin-top: 40px;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 1px solid #e5e5e5;
+            border-bottom: 1px solid #21262d;
         }
 
         h3 {
@@ -96,21 +102,23 @@
 
         p {
             margin: 0 0 20px 0;
+            color: #ffffff;
         }
 
         a {
-            color: #0366d6;
+            color: #539bf5;
             text-decoration: none;
         }
 
         a:hover {
+            color: #f9e3a8;
             text-decoration: underline;
         }
 
         .project {
             margin-bottom: 50px;
             padding-bottom: 30px;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid #21262d;
             display: flex;
             gap: 30px;
         }
@@ -123,12 +131,22 @@
             width: 400px;
             flex-shrink: 0;
             height: auto;
-            border: 1px solid #e5e5e5;
+            border: 1px solid #30363d;
             border-radius: 5px;
         }
 
         .project-content {
             flex: 1;
+        }
+
+        .project-content h3 a {
+            color: #539bf5;
+            text-decoration: none;
+        }
+
+        .project-content h3 a:hover {
+            color: #f9e3a8;
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
@@ -167,7 +185,7 @@
                 <span class="sep"> / </span>
                 <a href="https://www.linkedin.com/in/nihalpothunoori/" class="view-github">LinkedIn</a>
                 <span class="sep"> / </span>
-                <a href="/Nihal_Pothunoori_Resume.pdf">Resume</a>
+                <a href="/Nihal_Pothunoori_Resume.pdf" class="view-github">Resume</a>
             </div>
 
             <!-- Main Content -->
@@ -179,6 +197,13 @@
                         I'm a University of Illinois (UIUC) student studying Computer Engineering.
                         I enjoy robotics, simulation and real-life, and am delving more into deep learning and AI for autonomy.
                         My vision: robotics for the good of humanity; eg. improved Search & Rescue, factory automation, etc.
+                    </p>
+                    <p>
+                        Currently doing soft robotics research for <a href="http://daslab.illinois.edu/" target="_blank" rel="noopener noreferrer">DASLAB</a>, using diffusion-based path planning to identify backbone trajectories.
+                        We are also utilizing VLAs to identify areas for soft-arm bracing/wrapping in the environment.
+                    </p>
+                    <p>
+                        I work part-time as well, as a Web Developer for UIUC's College of Education.
                     </p>
                 </section>
             </div>
@@ -192,9 +217,9 @@
                 <img src="https://via.placeholder.com/400x250/0366d6/ffffff?text=Project+1+Screenshot" 
                      alt="Project 1 Screenshot" class="project-image">
                 <div class="project-content">
-                    <h3>Laundry Robot</h3>
+                    <h3><a href="laundry-robot.html">Laundry Robot</a></h3>
                     <p>
-                        A laundry robot that picks up clothing around my room. Built end-to-end in ROS2. Uses machine learning to identify the clothes, and traces a path between them for the robot to follow.
+                        A laundry robot that picks up clothing around my room.
                     </p>
                     <p><strong>Technologies:</strong> ROS2, Machine Learning, Computer Vision</p>
                 </div>
@@ -205,32 +230,17 @@
                 <img src="https://via.placeholder.com/400x250/28a745/ffffff?text=Project+2+Screenshot" 
                      alt="Project 2 Screenshot" class="project-image">
                 <div class="project-content">
-                    <h3>Rubik's Cube Solver</h3>
+                    <h3><a href="rubiks-cube-solver.html">Rubik's Cube Solver</a></h3>
                     <p>
-                        Built with SO-101, we use
+                        Attempting to solve a Rubik's cube with a pair SO-101.
                     </p>
-                    <p><strong>Technologies:</strong> React, Node.js, Express, MongoDB, Socket.io</p>
-                </div>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="project">
-                <img src="https://via.placeholder.com/400x250/dc3545/ffffff?text=Project+3+Screenshot" 
-                     alt="Project 3 Screenshot" class="project-image">
-                <div class="project-content">
-                    <h3>Project Name 3: Data Visualization Dashboard</h3>
-                    <p>
-                        An interactive dashboard for visualizing complex datasets with dynamic charts and graphs. 
-                        This project helps users gain insights from their data through beautiful and responsive 
-                        visualizations that update in real-time.
-                    </p>
-                    <p><strong>Technologies:</strong> D3.js, JavaScript, HTML/CSS, Python (backend)</p>
+                    <p><strong>Technologies:</strong> VLAs, Imitation Learning, Simulation Robotics</p>
                 </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid #e5e5e5; color: #999; font-size: 14px;">
+        <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid #21262d; color: #8b949e; font-size: 14px;">
         </footer>
     </div>
 </body>
