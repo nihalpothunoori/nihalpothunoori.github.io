@@ -164,12 +164,18 @@
         <a href="index.html" class="back-link">← Back to Portfolio</a>
 
         <h1>Laundry Robot</h1>
-        <h2>Video (2x speed) </h2>
+        <h3>Video (2x speed) </h3>
 
         <!-- Video Element - supports .mov, .mp4, .webm -->
         <video class="project-video" controls>
             <source src="/Robot_video.mp4" type="video/mp4">
         </video>
+
+        <p>
+
+            
+            Due to a mechanical failure, I couldn't get the LeKiwi arm to move, so I just skipped over that part of the project in this demo.
+        </p>
 
         <h2>Overview</h2>
         <p>
@@ -198,15 +204,13 @@
             Quick example:
         </p>
         <video class="project-video" controls>
-            <source src="/clothes_xy.mov" type="video/mov">
+            <source src="/clothes_xy.mov" type="video/quicktime">
         </video>
          <p>
 
              I then used the starting point of the robot (indicated by another AprilTag) to trace through all of these clothing points via a <a href="https://en.wikipedia.org/wiki/Catmull%E2%80%93Rom_spline">Catmull-Rom</a>
              spline to create a path, such as below.
         </p>
-
-        laundry_robot_rqt_graph.png
         
         <img src="/laundry_robot_path.png" 
              alt="path visualization" class="project-image">
