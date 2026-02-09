@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pipette-Dispenser - Nihal Pothunoori</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        body {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #ffffff;
+            background-color: #0d1117;
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-link {
+            color: #539bf5;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        .back-link:hover {
+            color: #f9e3a8;
+            text-decoration: underline;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #7ee787;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #7ee787;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #21262d;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #ADD8E6;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin: 0 0 20px 0;
+            color: #ffffff;
+        }
+
+        .project-meta {
+            color: #8b949e;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .project-video {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border: 1px solid #30363d;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .project-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border: 1px solid #30363d;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .project-image-setup {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border: 1px solid #30363d;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            background-color: #21262d;
+            color: #c9d1d9;
+            padding: 5px 12px;
+            border-radius: 3px;
+            font-size: 14px;
+            margin: 5px 5px 5px 0;
+        }
+
+        .button-group {
+            margin: 30px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #238636;
+            color: white !important;
+            border-radius: 5px;
+            font-size: 14px;
+            text-decoration: none;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn:hover {
+            background-color: #2ea043;
+            color: white !important;
+            text-decoration: none;
+        }
+
+        .btn-secondary {
+            background-color: #30363d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #484f58;
+        }
+
+        ul, ol {
+            margin: 0 0 20px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        a {
+            color: #539bf5;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #f9e3a8;
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #21262d;
+            color: #8b949e;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
+
+        <h1>Pipette Dispenser</h1>
+
+        <h2>Overview</h2>
+        <p>
+            Graduate student required additional functionality to complete an autosampler for the Autonomous Materials Systems Group at UIUC.
+        </p>
+            <p>
+            Here is a picture of the autosampler:
+        </p>
+
+        <img src="/laundry_robot_path.png" 
+             alt="Laundry robot pic" class="project-image">
+
+        <h2>Technical Details</h2>
+        <p>
+            I spent over 100 hours in Fusion360 over the course of this project. There were two parts: a rudimentary robotic "arm" and an automatic pipette dispenser.
+        </p>
+      <p>
+            For the robotic arm, I simply modeled a few stepper motors, and designed brackets to build a structure like so:
+        </p>
+              <img src="/laundry_robot_path.png" 
+             alt="Laundry robot pic" class="project-image">
+            <p>
+            This allowed us to consider the end-effector in a spherical-coordinate system, where an an end-effector position corresponded to three simple rotations of the stepper motors.
+             This system was mounted on a gantry such that the arm could reach anywhere on the autosampling table easily. The purpose: easily move samples, vials, etc around the crowded table.
+        </p>
+        <img src="/rviz_apriltag.jpg" 
+             alt="Rviz apriltag pic" class="project-image">
+        <p>
+          The second system, the pipette dispenser, was done by me from scratch. I went through a few iterations before I got a working prototype. A few of the early, unfortunate examples:
+        </p>
+        
+         <p>
+          The system I settled upon draws pipettes from a hopper, one at a time, and dispenses them vertically. I'm particularly proud of my design on the pipette iterator and the orientation mechanism.
+        </p>
+        
+        <img src="/laundry_robot_path.png" 
+             alt="path visualization" class="project-image">
+        <p>
+
+            Next came the state estimation.
+            Experimentally finding the LeKiwi's process noise/covariance via encoder data, fused with the covariance and measurements from the AprilTag allowed me a pretty decent position estimate.
+            The ROS2 ekf_localization node did most of the heavy lifting here. I chucked the output and the path into the NAV2 Pure Pursuit controller package, and the whole system came together.
+
+            P.S. I communicated with the LeKiwi with their ZMQ protocol, which allowed me to control the robot directly from ROS2 instead of LeKiwi's system.
+            
+            Here was my full setup.
+        </p>
+        
+        <img src="setup.jpg" 
+             alt="System Architecture" class="project-image-setup">
+        <p>
+            This was the final rqt_graph (basically, how everything came together). It looks a little complicated but it's mostly just throwing around the /tf topic to all my nodes.
+        </p>
+        <img src="/laundry_robot_rqt_graph.png" 
+             alt="System Architecture" class="project-image">
+        
+    </div>
+</body>
+</html>
