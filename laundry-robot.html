@@ -164,44 +164,60 @@
         <a href="index.html" class="back-link">← Back to Portfolio</a>
 
         <h1>Laundry Robot</h1>
-        <div class="project-meta">Project 1 | In Progress</div>
+        <h2>Video (2x speed) </h2>
 
         <!-- Video Element - supports .mov, .mp4, .webm -->
         <video class="project-video" controls>
-            <source src="/laundry-robot-demo.mov" type="video/mp4">
-            <source src="/laundry-robot-demo.mp4" type="video/mp4">
-            <source src="/laundry-robot-demo.webm" type="video/webm">
-            Your browser does not support the video tag.
+            <source src="/Robot_video.mp4" type="video/mp4">
         </video>
-
-        <div class="button-group">
-            <a href="https://github.com/yourusername/laundry-robot" class="btn" target="_blank">View on GitHub</a>
-            <a href="#" class="btn btn-secondary">Live Demo</a>
-        </div>
 
         <h2>Overview</h2>
         <p>
-            A laundry robot designed to autonomously pick up clothing items scattered around a room. 
-            This project combines computer vision, manipulation planning, and machine learning to create 
-            a practical home robotics solution.
+            ROS system uses YOLOv8 model to identify and bound clothing, and then traces a path around them that the robot follows.
         </p>
 
-        <div>
-            <strong>Technologies:</strong><br>
-            <span class="tech-tag">ROS2</span>
-            <span class="tech-tag">Machine Learning</span>
-            <span class="tech-tag">Computer Vision</span>
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">OpenCV</span>
-        </div>
+        <img src="/laundry_robot_path.png" 
+             alt="Laundry robot pic" class="project-image">
 
         <h2>Technical Details</h2>
-        
-        <h3>Computer Vision System</h3>
         <p>
-            The robot uses a combination of RGB-D cameras and YOLO-based object detection to identify clothing items. 
-            The system processes depth information to determine optimal grasp points and handles various lighting conditions.
+            This project would have taken me half the time it did if I had a RGB-Depth camera. Alas, I am broke, so I opted for a workaround with a regular RBG camera.
+            Using three apriltags to serve as reference points, I modeled a plane that would represent the floor of my room.
+            Below is a sort of visualization. The flat plane is the camera frame, and the plane intersecting it is the representation from the apriltags.
         </p>
+        <img src="/rviz_apriltag.jpg" 
+             alt="Rviz apriltag pic" class="project-image">
+        <p>
+            
+            The goal with this: take any pixel from the camera image and convert it to (x,y,z) coordinates where the z=0 plane is represented by the plane created by the apriltags.
+            So in this case, it would be the floor.
+            I modeled this as a ROS2 service that could easily be pinged in other nodes.
+            I then used a YOLOv8 deep learning model to identify and bound the clothing within a rectangle created by the three AprilTags.
+            The ROS2 service makes these points really easy to work with in the 2D plane my robot will manuever in.
+            You can see why this service was vital for this project; without it, SLAM-less localization would have been quite difficult.
+            Quick example:
+        </p>
+        <video class="project-video" controls>
+            <source src="/clothes_xy.mov" type="video/mov">
+        </video>
+         <p>
+
+             I then used the starting point of the robot (indicated by another AprilTag) to trace through all of these clothing points via a <a href="https://en.wikipedia.org/wiki/Catmull%E2%80%93Rom_spline">Catmull-Rom</a>
+             spline to create a path, such as below.
+        </p>
+
+        laundry_robot_rqt_graph.png
+        
+        <img src="/laundry_robot_path.png" 
+             alt="path visualization" class="project-image">
+        <p>
+
+            Next came the state estimation. Experimentally finding the LeKiwi's process noise/covariance via encoder data, fused with the covariance and measurements from the AprilTag allowed me a pretty decent position estimate.
+            The ROS2 ekf_localization node did most of the heavy lifting here. I chucked the output and the path into the ROS2 
+        </p>
+        
+        <img src="laundry_robot_path.png" 
+             alt="System Architecture" class="project-image">
 
         <!-- Optional: Additional images -->
         <img src="https://via.placeholder.com/800x400/0366d6/ffffff?text=System+Architecture" 
