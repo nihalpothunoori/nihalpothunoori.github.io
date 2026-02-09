@@ -204,30 +204,22 @@
         </p>
         
          <p>
-          The system I settled upon draws pipettes from a hopper, one at a time, and dispenses them vertically. I'm particularly proud of my design on the pipette iterator and the orientation mechanism.
+          The system I settled upon draws pipettes from a hopper one at a time, and dispenses them vertically. I'm particularly proud of my design on the pipette indexer and the orientation mechanism.
         </p>
-        
+    <p>
+          As further illustrated in the following diagrams, this system is deined to dispense pipettes regardless of their forwards/backwards orientation. The pipettes, stored in the hopper, are jumbled around by the puhser at the bottom such that one pipette at a time will enter the indexing chamber. The indexing chamber then rotates the pipette and drops it into the orienting chamber, which will then orient it from horizontal to vertical (easier integration with the robotic arm that picks it up).
+          A TOF sensor has been integrated at the bottom so we can identify when the pipette has been dispensed, or if there is a jam. The system uses a servo and stepper motor, and was done in Arduino.
+    
+    </p>
+            <p>
+          The following are videos of earlier stages of this working prototype.
+    </p>
+
+               <p>
+          This is me and my group presenting at our end-of-semester symposium!
+    </p>
         <img src="/laundry_robot_path.png" 
              alt="path visualization" class="project-image">
-        <p>
-
-            Next came the state estimation.
-            Experimentally finding the LeKiwi's process noise/covariance via encoder data, fused with the covariance and measurements from the AprilTag allowed me a pretty decent position estimate.
-            The ROS2 ekf_localization node did most of the heavy lifting here. I chucked the output and the path into the NAV2 Pure Pursuit controller package, and the whole system came together.
-
-            P.S. I communicated with the LeKiwi with their ZMQ protocol, which allowed me to control the robot directly from ROS2 instead of LeKiwi's system.
-            
-            Here was my full setup.
-        </p>
-        
-        <img src="setup.jpg" 
-             alt="System Architecture" class="project-image-setup">
-        <p>
-            This was the final rqt_graph (basically, how everything came together). It looks a little complicated but it's mostly just throwing around the /tf topic to all my nodes.
-        </p>
-        <img src="/laundry_robot_rqt_graph.png" 
-             alt="System Architecture" class="project-image">
-        
     </div>
 </body>
 </html>
