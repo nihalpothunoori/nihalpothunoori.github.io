@@ -74,28 +74,31 @@
 
         .project-video {
             width: 100%;
-            max-width: 350px;
-            height: auto;
-            border: 1px solid #30363d;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-
-        .project-image {
-            width: 100%;
-            max-width: 800px;
-            height: auto;
-            border: 1px solid #30363d;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-        .project-image-setup {
-            width: 100%;
             max-width: 400px;
             height: auto;
             border: 1px solid #30363d;
             border-radius: 5px;
             margin: 20px 0;
+            display: block;
+        }
+
+        .project-image {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            border: 1px solid #30363d;
+            border-radius: 5px;
+            margin: 20px 0;
+            display: block;
+        }
+        .project-image-setup {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border: 1px solid #30363d;
+            border-radius: 5px;
+            margin: 20px 0;
+            display: block;
         }
 
         .tech-tag {
@@ -186,7 +189,7 @@
             For the robotic arm, I simply modeled a few stepper motors, and designed brackets to build a structure like so:
         </p>
               <img src="/robotic_subsystem.png" 
-             alt="Laundry robot pic" class="project-image">
+             alt="Robotic subsystem" class="project-image">
             <p>
             This allowed us to consider the end-effector in a spherical-coordinate system, where an an end-effector position corresponded to three simple rotations of the stepper motors.
              This system was mounted on a gantry such that the arm could reach anywhere on the autosampling table easily. The purpose: easily move samples, vials, etc around the crowded table.
@@ -201,24 +204,30 @@
     </p>
 
         <img src="/outer.png" 
-             alt="Laundry robot pic" class="project-image">
+             alt="Pipette dispenser outer view" class="project-image">
 
         <img src="/side_view.png" 
-             alt="Laundry robot pic" class="project-image">
+             alt="Pipette dispenser side view" class="project-image">
 
         <img src="/double_pipette.png" 
-             alt="Laundry robot pic" class="project-image">
-            <p>
-          The following is a video of an earlier stage of this working prototype. New, improved system works but has yet to be integrated into the autosampler.
-    </p>
-        <video class="project-video" controls width="400">
-            <source src="/early_pipette_test.mp4" type="video/mp4">
-        </video>
+             alt="Pipette dispenser mechanism" class="project-image">
+    <p>
+  The following is a video of an earlier stage of this working prototype. New, improved system works but has yet to be integrated into the autosampler.
+</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 400px; margin: 20px 0;">
+    <iframe 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 1px solid #30363d; border-radius: 5px;" 
+        src="https://www.youtube.com/embed/cII1iVk438o" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+</div>
                <p>
           This is me and my group presenting at our end-of-semester symposium!
     </p>
         <img src="/symposium.jpg" 
-             alt="path visualization" class="project-image">
+             alt="Symposium presentation" class="project-image">
     </div>
 </body>
 </html>
