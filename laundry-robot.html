@@ -212,60 +212,23 @@
              alt="path visualization" class="project-image">
         <p>
 
-            Next came the state estimation. Experimentally finding the LeKiwi's process noise/covariance via encoder data, fused with the covariance and measurements from the AprilTag allowed me a pretty decent position estimate.
-            The ROS2 ekf_localization node did most of the heavy lifting here. I chucked the output and the path into the ROS2 
+            Next came the state estimation.
+            Experimentally finding the LeKiwi's process noise/covariance via encoder data, fused with the covariance and measurements from the AprilTag allowed me a pretty decent position estimate.
+            The ROS2 ekf_localization node did most of the heavy lifting here. I chucked the output and the path into the NAV2 Pure Pursuit controller package, and the whole system came together.
+
+            P.S. I communicated with the LeKiwi with their ZMQ protocol, which allowed me to control the robot directly from ROS2 instead of LeKiwi's system.
+            
+            Here was my full setup.
         </p>
         
-        <img src="laundry_robot_path.png" 
+        <img src="setup.jpg" 
              alt="System Architecture" class="project-image">
-
-        <!-- Optional: Additional images -->
-        <img src="https://via.placeholder.com/800x400/0366d6/ffffff?text=System+Architecture" 
-             alt="System Architecture" class="project-image">
-
-        <h3>Motion Planning</h3>
         <p>
-            Implemented using MoveIt2 for arm trajectory planning and Nav2 for mobile base navigation. The system 
-            creates collision-free paths in cluttered environments and adapts to dynamic obstacles.
+            This was the final rqt_graph (basically, how everything came together). It looks a little complicated but it's mostly just throwing around the /tf topic to all my nodes.
         </p>
-
-        <h2>Challenges</h2>
+        <img src="/laundry_robot_rqt_graph.png" 
+             alt="System Architecture" class="project-image">
         
-        <h3>Fabric Manipulation</h3>
-        <p>
-            Picking up soft, deformable clothing items presented unique challenges compared to rigid objects. 
-            Solved this by implementing vision-based grasp quality estimation and adaptive gripper control.
-        </p>
-
-        <h3>Scene Understanding</h3>
-        <p>
-            Distinguishing between different types of clothing and determining pickup priority required advanced 
-            semantic understanding. Implemented a custom CNN trained on diverse clothing datasets.
-        </p>
-
-        <h2>Results</h2>
-        <ul>
-            <li><strong>Detection Accuracy:</strong> 92% accuracy on various clothing types</li>
-            <li><strong>Grasp Success Rate:</strong> 85% successful pickups on first attempt</li>
-            <li><strong>Coverage:</strong> Can clean a 4x4 meter room in approximately 15 minutes</li>
-        </ul>
-
-        <h2>Future Work</h2>
-        <ul>
-            <li>Add clothing sorting capabilities to organize items by type</li>
-            <li>Implement learning from demonstration to improve grasp strategies</li>
-            <li>Integrate with smart home systems for scheduled cleaning</li>
-            <li>Add multi-robot coordination for larger spaces</li>
-        </ul>
-
-        <div class="button-group">
-            <a href="https://github.com/yourusername/laundry-robot" class="btn" target="_blank">View Code on GitHub</a>
-            <a href="index.html" class="btn btn-secondary">Back to Portfolio</a>
-        </div>
-
-        <footer>
-            <p>© 2024 Nihal Pothunoori</p>
-        </footer>
     </div>
 </body>
 </html>
