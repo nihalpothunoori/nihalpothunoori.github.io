@@ -177,12 +177,6 @@
         <p>
             Graduate student required additional functionality to complete an autosampler for the Autonomous Materials Systems Group at UIUC.
         </p>
-            <p>
-            Here is a picture of the autosampler:
-        </p>
-
-        <img src="/laundry_robot_path.png" 
-             alt="Laundry robot pic" class="project-image">
 
         <h2>Technical Details</h2>
         <p>
@@ -191,34 +185,39 @@
       <p>
             For the robotic arm, I simply modeled a few stepper motors, and designed brackets to build a structure like so:
         </p>
-              <img src="/laundry_robot_path.png" 
+              <img src="/robotic_subsystem.png" 
              alt="Laundry robot pic" class="project-image">
             <p>
             This allowed us to consider the end-effector in a spherical-coordinate system, where an an end-effector position corresponded to three simple rotations of the stepper motors.
              This system was mounted on a gantry such that the arm could reach anywhere on the autosampling table easily. The purpose: easily move samples, vials, etc around the crowded table.
         </p>
-        <img src="/rviz_apriltag.jpg" 
-             alt="Rviz apriltag pic" class="project-image">
         <p>
-          The second system, the pipette dispenser, was done by me from scratch. I went through a few iterations before I got a working prototype. A few of the early, unfortunate examples:
-        </p>
-        
-         <p>
-          The system I settled upon draws pipettes from a hopper one at a time, and dispenses them vertically. I'm particularly proud of my design on the pipette indexer and the orientation mechanism.
+          The second system, the pipette dispenser, was done by me from scratch. I settled upon a design that draws pipettes from a hopper one at a time, and dispenses them vertically.
         </p>
     <p>
           As further illustrated in the following diagrams, this system is deined to dispense pipettes regardless of their forwards/backwards orientation. The pipettes, stored in the hopper, are jumbled around by the puhser at the bottom such that one pipette at a time will enter the indexing chamber. The indexing chamber then rotates the pipette and drops it into the orienting chamber, which will then orient it from horizontal to vertical (easier integration with the robotic arm that picks it up).
           A TOF sensor has been integrated at the bottom so we can identify when the pipette has been dispensed, or if there is a jam. The system uses a servo and stepper motor, and was done in Arduino.
     
     </p>
-            <p>
-          The following are videos of earlier stages of this working prototype.
-    </p>
 
+        <img src="/outer.png" 
+             alt="Laundry robot pic" class="project-image">
+
+        <img src="/side_view.png" 
+             alt="Laundry robot pic" class="project-image">
+
+        <img src="/double_pipette.png" 
+             alt="Laundry robot pic" class="project-image">
+            <p>
+          The following is a video of an earlier stage of this working prototype. New, improved system works but has yet to be integrated into the autosampler.
+    </p>
+        <video class="project-video" controls width="400">
+            <source src="/early_pipette_test.mp4" type="video/mp4">
+        </video>
                <p>
           This is me and my group presenting at our end-of-semester symposium!
     </p>
-        <img src="/laundry_robot_path.png" 
+        <img src="/symposium.jpg" 
              alt="path visualization" class="project-image">
     </div>
 </body>
