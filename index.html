@@ -174,6 +174,14 @@
             border-radius: 5px;
         }
 
+        .project-video {
+            width: 400px;
+            height: 711px;
+            flex-shrink: 0;
+            border: 1px solid #30363d;
+            border-radius: 5px;
+        }
+
         .project-content {
             flex: 1;
         }
@@ -204,6 +212,11 @@
 
             .project-image {
                 width: 100%;
+            }
+
+            .project-video {
+                width: 100%;
+                height: auto;
             }
         }
     </style>
@@ -275,7 +288,7 @@
                 </div>
             </div>
 
-                <div class="project">
+            <div class="project">
                 <img src="/outer.png"
                      alt="Project 1 Screenshot" class="project-image">
                 <div class="project-content">
@@ -287,32 +300,27 @@
                 </div>
             </div>
 
-
-
-
             <div class="project">
-<iframe width="560" height="315" 
-        src="https://www.youtube.com/embed/VIDEO_ID" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-</iframe>
-        <h4>PlantBaby</h4>
-<p>
-            Built a plant that whines and cries when you don't water it or take care of it often and affectionately.                      
-        </p>
-        <p>
-            A critique on how we neglect our environment. Personifying the Earth as a whining baby exemplifies how much care we need to keep our home healthy.                    
-        </p>
-            <p>
-            Built for Calhacks.                       
-        </p>
-        <p class="project-skills"><strong>Skills:</strong> Swift, Arduino</p>
-    </div>
-</div>
-
-
-            
+                <iframe class="project-video"
+                    src="https://www.youtube.com/embed/cII1iVk438o" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+                <div class="project-content">
+                    <h4>PlantBaby</h4>
+                    <p>
+                        Built a plant that whines and cries when you don't water it or take care of it often and affectionately.                      
+                    </p>
+                    <p>
+                        A critique on how we neglect our environment. Personifying the Earth as a whining baby exemplifies how much care we need to keep our home healthy.                    
+                    </p>
+                    <p>
+                        Built for Calhacks.                       
+                    </p>
+                    <p class="project-skills"><strong>Skills:</strong> Swift, Arduino</p>
+                </div>
+            </div>
             
         </section>
     </div>
