@@ -180,12 +180,6 @@
         </video>
         
 
-        <p>
-
-            
-            Due to a mechanical failure, I couldn't get the LeKiwi arm to move, so I just skipped over that part of the project in this demo.
-        </p>
-
         <h2>Overview</h2>
         <p>
             ROS system uses YOLOv8 model to identify and bound clothing, and then traces a path around them that the robot follows.
@@ -229,7 +223,7 @@
 
             Next came the state estimation.
             Experimentally finding the LeKiwi's process noise/covariance via encoder data, fused with the covariance and measurements from the AprilTag allowed me a pretty decent position estimate.
-            The ROS2 ekf_localization node did most of the heavy lifting here. I chucked the output and the path into the NAV2 Pure Pursuit controller package, and the whole system came together.
+            The ROS2 ekf_localization node did most of the heavy lifting here. I chucked the output and the path into a Stanley controller, and the whole system came together.
 
             P.S. I communicated with the LeKiwi with their ZMQ protocol, which allowed me to control the robot directly from ROS2 instead of LeKiwi's system.
             
