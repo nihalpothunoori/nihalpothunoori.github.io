@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Backbone Discovery — Nihal Pothunoori</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        body {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #ffffff;
+            background-color: #222222;
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        a {
+            color: #539bf5;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #f9e3a8;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            font-size: 14px;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        h1 {
+            color: #7ee787;
+            font-weight: 700;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #7ee787;
+            font-weight: 700;
+            font-size: 24px;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #21262d;
+        }
+
+        p {
+            color: #ffffff;
+            margin: 0 0 16px 0;
+        }
+
+        .project-skills {
+            font-size: 0.85rem;
+            opacity: 0.85;
+            margin-bottom: 30px;
+        }
+
+        .img-row {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .img-row img {
+            flex: 1;
+            min-width: 200px;
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #30363d;
+            border-radius: 5px;
+        }
+
+        .single-img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #30363d;
+            border-radius: 5px;
+            margin: 20px 0 30px 0;
+            display: block;
+        }
+
+        pre {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 5px;
+            padding: 20px;
+            overflow-x: auto;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #c9d1d9;
+        }
+
+        code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+
+        .keyword { color: #ff7b72; }
+        .string { color: #a5d6ff; }
+        .comment { color: #8b949e; }
+        .func { color: #d2a8ff; }
+        .num { color: #79c0ff; }
+
+        @media (max-width: 768px) {
+            .img-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <a href="index.html" class="back-link">← back to home</a>
+
+        <h1>Backbone Discovery</h1>
+        <p class="project-skills"><strong>Skills:</strong> Segmentation, CUDA, Computer Vision, Torch, PointClouds</p>
+
+        <h2>Goal</h2>
+        <p>
+            Extract the soft-arm backbone from real-world camera data — this isn't possible in simulation.
+            The backbone will be used for benchmarks and as a performance metric for our diffusion-based path planning.
+        </p>
+        <p>
+            We've set up 3 cameras around the workspace to capture the arm from multiple angles.
+        </p>
+
+        <h2>Pipeline</h2>
+        <p>
+            The pipeline works as follows: capture multi-view images of the soft arm, run SAM3 segmentation to isolate the arm from the background,
+            reconstruct a point cloud representation from the segmented views, and then single out the backbone curve using polynomial regression.
+        </p>
+
+        <img src="/robotic_arm_projections.png" alt="Robotic arm projections from multiple cameras" class="single-img">
+
+        <h2>SAM3 Segmentation</h2>
+        <p>
+            We ran SAM3 segmentation on the multi-view images. Here are the results:
+        </p>
+
+        <div class="img-row">
+            <img src="/SAM3_Segmentation_Example.png" alt="SAM3 Segmentation Example">
+            <img src="/seg_example_3.png" alt="Segmentation Example 3">
+            <img src="/seg_example_2.png" alt="Segmentation Example 2">
+        </div>
+
+        <h2>Point Cloud Result</h2>
+        <p>
+            Here's what that turned out to be after point cloud reconstruction:
+        </p>
+
+        <img src="/pc_1.png" alt="Point cloud reconstruction of soft arm" class="single-img">
+
+
+
+    </div>
+</body>
+</html>
