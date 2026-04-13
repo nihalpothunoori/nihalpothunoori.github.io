@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>3D Gaussian Splatting - Nihal Pothunoori</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        body {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #ffffff;
+            background-color: #0d1117;
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-link {
+            color: #539bf5;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        .back-link:hover {
+            color: #f9e3a8;
+            text-decoration: underline;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #7ee787;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #7ee787;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #21262d;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #ADD8E6;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin: 0 0 20px 0;
+            color: #ffffff;
+        }
+
+        .project-video {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border: 1px solid #30363d;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .project-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border: 1px solid #30363d;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        a {
+            color: #539bf5;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #f9e3a8;
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #21262d;
+            color: #8b949e;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
+
+        <h1>3D Gaussian Splatting</h1>
+
+        <video class="project-video" controls>
+            <source src="/3dgs_main.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <h2>Overview</h2>
+        <p>
+            For the RoboHacks hackathon, I implemented offline 3D Gaussian Splatting using stereo cameras.
+            Used camera intrinsics to collect depth and rgb images of a scene at different angles.
+            Then ran a COLMAP on all of the images to stitch them together, and then rendered it all as a collection of splats.
+            All processing done on the cloud on H200's.
+            Frame collection of a sample scene shown here:
+        </p>
+
+        <video class="project-video" controls>
+            <source src="/3dgs_frames.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <h2>Continuation</h2>
+        <p>
+            Was implementing 3D interaction with objects in the scene for the hackathon, but ran out of time.
+            I ran SAM3 on all of the depth/rgb images to mask out distinct objects.
+            Currently working on identifying the corresponding 3D Gaussian splats for those masks in each frame, with the hopes of being able to move the 3D representations of different objects through space in the scene, using some UI.
+            Because of the robot's odometry, position encoding for these distinct objects were recorded, so I'll know the exact new position in the scene these objects go to.
+        </p>
+    </div>
+</body>
+</html>
