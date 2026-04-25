@@ -124,6 +124,17 @@
             margin-top: 0;
             margin-bottom: 15px;
         }
+
+        .projects-subsection h3 {
+            font-size: 18px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            color: #adbac7;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-transform: lowercase;
+        }
+
         h4 {
             font-size: 22px;
             margin-top: 0;
@@ -138,7 +149,6 @@
             color: #ffffff;
         }
 
-        /* 👇 only new CSS */
         .project-skills {
             font-size: 0.85rem;
             opacity: 0.85;
@@ -235,9 +245,8 @@
                 <a href="https://www.linkedin.com/in/nihalpothunoori/" class="view-github">LinkedIn</a>
                 <span class="sep"> / </span>
                 <a href="/Nihal_Pothunoori_Robotics.pdf" class="view-github">Resume</a>
- <span class="sep"> / </span>
+                <span class="sep"> / </span>
                 <a href="https://x.com/omnomnihal" class="view-github">X</a>
-                
             </div>
 
             <div class="main-content">
@@ -250,81 +259,87 @@
                     <p> Currently doing soft robotics research for <a href="http://daslab.illinois.edu/" target="_blank" rel="noopener noreferrer">DASLAB</a>, using diffusion-based path planning to identify backbone trajectories. We are also utilizing VLAs to identify areas for soft-arm bracing/wrapping in the environment. </p>
                     <p> I work part-time as well, as a Web Developer for UIUC's College of Education. </p>
                 </section>
-                
             </div>
         </div>
 
         <section class="projects-section">
             <h2>projects</h2>
 
-            <div class="project">
-                <img src="/3dgs_front.png"
-                     alt="3D Gaussian Splatting Screenshot" class="project-image">
-                <div class="project-content">
-                    <h3><a href="3dgs.html">3D Gaussian Splatting</a></h3>
-                    <p>
-                        Showcase of a 3D Gaussian Splat environment, product of YC+Innate's RoboHack with their Mars Robot.
-                    </p>
-                    <p class="project-skills"><strong>Skills:</strong> 3DGS, Computer Vision, ROS2</p>
+            <div class="projects-subsection">
+                <h3>// highlights</h3>
+
+                <div class="project">
+                    <img src="/robot_front.jpg"
+                         alt="Project 1 Screenshot" class="project-image">
+                    <div class="project-content">
+                        <h3><a href="laundry-robot.html">Laundry Robot</a></h3>
+                        <p>
+                            A laundry robot that picks up clothing around my room.
+                        </p>
+                        <p class="project-skills"><strong>Skills:</strong> ROS2, Machine Learning, Computer Vision, Sensor Fusion, Localization</p>
+                    </div>
                 </div>
-            </div>
- 
-            <div class="project">
-                <img src="/SAM3_Segmentation_Example.png"
-                     alt="Backbone Discovery Screenshot" class="project-image">
-                <div class="project-content">
-                    <h3><a href="Segmentation.html">Backbone Discovery</a></h3>
-                    <p>
-                        IN PROGRESS! A SAM3 segmentation automation that discovers the backbone of a soft-arm.
-                    </p>
-                    <p class="project-skills"><strong>Skills:</strong> Segmentation, CUDA, Computer Vision, Torch, PointClouds</p>
-                </div>
-            </div>
-            <div class="project">
-                <img src="/robot_front.jpg"
-                     alt="Project 1 Screenshot" class="project-image">
-                <div class="project-content">
-                    <h3><a href="laundry-robot.html">Laundry Robot</a></h3>
-                    <p>
-                        A laundry robot that picks up clothing around my room.
-                    </p>
-                    <p class="project-skills"><strong>Skills:</strong> ROS2, Machine Learning, Computer Vision, Sensor Fusion, Localization</p>
+
+                <div class="project">
+                    <img src="/SAM3_Segmentation_Example.png"
+                         alt="Backbone Discovery Screenshot" class="project-image">
+                    <div class="project-content">
+                        <h3><a href="Segmentation.html">Backbone Discovery</a></h3>
+                        <p>
+                            IN PROGRESS! A SAM3 segmentation automation that discovers the backbone of a soft-arm.
+                        </p>
+                        <p class="project-skills"><strong>Skills:</strong> Segmentation, CUDA, Computer Vision, Torch, PointClouds</p>
+                    </div>
                 </div>
             </div>
 
- 
+            <div class="projects-subsection">
+                <h3>// others </h3>
 
-            <div class="project">
-                <img src="/outer.png"
-                     alt="Project 1 Screenshot" class="project-image">
-                <div class="project-content">
-                    <h3><a href="pipette_dispenser.html">Autosampler Supplementation</a></h3>
-                    <p>
-                      Built a robotic subsystem and pipette dispenser to supplment an autosampler.
-                    </p>
-                    <p class="project-skills"><strong>Skills:</strong> CAD, Design, Arduino</p>
+                <div class="project">
+                    <img src="/3dgs_front.png"
+                         alt="3D Gaussian Splatting Screenshot" class="project-image">
+                    <div class="project-content">
+                        <h3><a href="3dgs.html">3D Gaussian Splatting</a></h3>
+                        <p>
+                            Showcase of a 3D Gaussian Splat environment, product of YC+Innate's RoboHack with their Mars Robot.
+                        </p>
+                        <p class="project-skills"><strong>Skills:</strong> 3DGS, Computer Vision, ROS2</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="project">
-                <iframe class="project-video"
-                    src="https://www.youtube.com/embed/cII1iVk438o" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-                <div class="project-content">
-                    <h4>PlantBaby</h4>
-                    <p>
-                        Built a plant that whines and cries when you don't water it or take care of it often and affectionately.                      
-                    </p>
-                    <p>
-                        A critique on how we neglect our environment. Personifying the Earth as a whining baby exemplifies how much care we need to keep our home healthy.                    
-                    </p>
-                    <p>
-                        Built for Calhacks.                       
-                    </p>
-                    <p class="project-skills"><strong>Skills:</strong> Swift, Arduino</p>
+                <div class="project">
+                    <img src="/outer.png"
+                         alt="Project 1 Screenshot" class="project-image">
+                    <div class="project-content">
+                        <h3><a href="pipette_dispenser.html">Autosampler Supplementation</a></h3>
+                        <p>
+                          Built a robotic subsystem and pipette dispenser to supplment an autosampler.
+                        </p>
+                        <p class="project-skills"><strong>Skills:</strong> CAD, Design, Arduino</p>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <iframe class="project-video"
+                        src="https://www.youtube.com/embed/cII1iVk438o" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                    <div class="project-content">
+                        <h4>PlantBaby</h4>
+                        <p>
+                            Built a plant that whines and cries when you don't water it or take care of it often and affectionately.                      
+                        </p>
+                        <p>
+                            A critique on how we neglect our environment. Personifying the Earth as a whining baby exemplifies how much care we need to keep our home healthy.                    
+                        </p>
+                        <p>
+                            Built for Calhacks.                       
+                        </p>
+                        <p class="project-skills"><strong>Skills:</strong> Swift, Arduino</p>
+                    </div>
                 </div>
             </div>
             
