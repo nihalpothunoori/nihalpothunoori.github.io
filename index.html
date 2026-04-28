@@ -135,13 +135,12 @@
             text-transform: lowercase;
         }
 
-        h4 {
+        .project-content h3 {
             font-size: 22px;
             margin-top: 0;
             margin-bottom: 15px;
             font-weight: 700;
             color: #ffffff;
-            text-decoration: none;
         }
 
         p {
@@ -281,7 +280,7 @@
                     <img src="/robot_front.jpg"
                          alt="Project 1 Screenshot" class="project-image">
                     <div class="project-content">
-                        <h3><a href="laundry-robot.html">Laundry Robot</a></h3>
+                        <h3><a href="laundry-robot.html">laundry robot</a></h3>
                         <p>
                             A laundry robot that picks up clothing around my room.
                         </p>
@@ -297,7 +296,7 @@
                         allowfullscreen>
                     </iframe>
                     <div class="project-content">
-                        <h4>Soccer Video Generation</h4>
+                        <h3>soccer counterfactual video generation</h3>
                         <p>
                             Can generate alternate sports realities with text-prompted video generation. Originally implemented from scratch after reading Wan2.1 paper, but wasn't able to train well enough. Used LoRA to "fine-tune" Wan2.1 on single-label data, using an NLP layer to break down text input to model vocabulary.
                         </p>
@@ -309,7 +308,7 @@
                     <img src="/SAM3_Segmentation_Example.png"
                          alt="Backbone Discovery Screenshot" class="project-image">
                     <div class="project-content">
-                        <h3><a href="Segmentation.html">Backbone Discovery</a></h3>
+                        <h3><a href="Segmentation.html">backbone discovery</a></h3>
                         <p>
                             IN PROGRESS! A SAM3 segmentation automation that discovers the backbone of a soft-arm.
                         </p>
@@ -322,10 +321,22 @@
                 <h3>// others </h3>
 
                 <div class="project">
+                    <img src="/GNN_example.png"
+                         alt="GNN School Zone Detection Screenshot" class="project-image">
+                    <div class="project-content">
+                        <h3>graph neural network for school zone detection</h3>
+                        <p>
+                            Tasked to find School Zone on map, given limited sparse data (speed limits, landmarks, etc). Implemented (from scratch) + trained GNN to identify speed limit of every surrounding road (utilizing geography rather than traffic flow). Had ~99% accuracy for +/- 5 mph.
+                        </p>
+                        <p class="project-skills"><strong>Skills:</strong> GNN, Deep Learning, Graph Theory, PyTorch</p>
+                    </div>
+                </div>
+
+                <div class="project">
                     <img src="/3dgs_front.png"
                          alt="3D Gaussian Splatting Screenshot" class="project-image">
                     <div class="project-content">
-                        <h3><a href="3dgs.html">3D Gaussian Splatting</a></h3>
+                        <h3><a href="3dgs.html">3d gaussian splatting</a></h3>
                         <p>
                             Showcase of a 3D Gaussian Splat environment, product of YC+Innate's RoboHack with their Mars Robot.
                         </p>
@@ -337,7 +348,7 @@
                     <img src="/outer.png"
                          alt="Project 1 Screenshot" class="project-image">
                     <div class="project-content">
-                        <h3><a href="pipette_dispenser.html">Autosampler Supplementation</a></h3>
+                        <h3><a href="pipette_dispenser.html">autosampler supplementation</a></h3>
                         <p>
                           Built a robotic subsystem and pipette dispenser to supplment an autosampler.
                         </p>
@@ -353,7 +364,7 @@
                         allowfullscreen>
                     </iframe>
                     <div class="project-content">
-                        <h4>PlantBaby</h4>
+                        <h3>PlantBaby</h3>
                         <p>
                             Built a plant that whines and cries when you don't water it or take care of it often and affectionately.                      
                         </p>
