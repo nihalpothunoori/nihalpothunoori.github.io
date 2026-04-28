@@ -192,6 +192,14 @@
             border-radius: 5px;
         }
 
+        .project-video-landscape {
+            width: 400px;
+            height: 225px;
+            flex-shrink: 0;
+            border: 1px solid #30363d;
+            border-radius: 5px;
+        }
+
         .project-content {
             flex: 1;
         }
@@ -224,7 +232,8 @@
                 width: 100%;
             }
 
-            .project-video {
+            .project-video,
+            .project-video-landscape {
                 width: 100%;
                 height: auto;
             }
@@ -281,7 +290,7 @@
                 </div>
 
                 <div class="project">
-                    <iframe class="project-video"
+                    <iframe class="project-video-landscape"
                         src="https://www.youtube.com/embed/ES00rbzp4JY"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
