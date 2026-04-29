@@ -298,7 +298,9 @@
                     <div class="project-content">
                         <h3>soccer counterfactual video generation</h3>
                         <p>
-                            Can generate alternate sports realities with text-prompted video generation. Originally implemented from scratch after reading Wan2.1 paper, but wasn't able to train well enough. Used LoRA to "fine-tune" Wan2.1 on single-label data, using an NLP layer to break down text input to model vocabulary.
+                            Can generate alternate sports realities with text-prompted video generation. 
+                            Originally implemented from scratch after reading Wan paper, but wasn't able to train well enough. 
+                            Used LoRA to "fine-tune" Wan2.1 on single-label data, using an NLP layer to break down text input to model's vocabulary.
                         </p>
                         <p class="project-skills"><strong>Skills:</strong> VAE, LoRA, Diffusion Transformers, Flow Matching</p>
                     </div>
@@ -321,12 +323,29 @@
                 <h3>// others </h3>
 
                 <div class="project">
+                    <iframe class="project-video-landscape"
+                        src="https://www.youtube.com/embed/Ahl85iYj5OE"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    <div class="project-content">
+                        <h3>carwash MuJoCo sim</h3>
+                        <p>
+                            Uses SAM3 to identify dirty spots, then finds the pointclouds from the binary masks. Runs geometric path-planning to clean. Repeats till all clean.
+                        </p>
+                        <p class="project-skills"><strong>Skills:</strong> MuJoCo, SAM3, Path-planning</p>
+                    </div>
+                </div>
+
+                <div class="project">
                     <img src="/GNN_example.png"
                          alt="GNN School Zone Detection Screenshot" class="project-image">
                     <div class="project-content">
                         <h3>graph neural network for school zone detection</h3>
                         <p>
-                            Tasked to find School Zone on map, given sparse data (speed limits, landmarks, etc). Implemented from scratch + trained GNN to identify speed limit of every surrounding road. Utilizes geography rather than un-dependable traffic flow. Had ~99% accuracy for +/- 5 mph.
+                            Tasked to find School Zone on map, given sparse data (speed limits, landmarks, etc). Implemented from scratch + trained GNN to identify speed limit of every surrounding road. 
+                            Utilizes geography rather than un-dependable traffic flow. Had ~99% accuracy for +/- 5 mph.
                         </p>
                         <p class="project-skills"><strong>Skills:</strong> GNN, Deep Learning, Graph Theory, PyTorch</p>
                     </div>
