@@ -250,20 +250,22 @@
             This lets the model adjust its behavior at different noise levels, which matters a lot: the kind of coarse structure vs. fine detail the model should focus on changes significantly across the noise schedule.
         </p>
         <p>
-            <strong>Text</strong>: encoded with T5 (the slides say CLIP — that was a mistake on my part). T5 produces rich token-level embeddings that are injected as cross-attention keys and values,
+            <strong>Text</strong>: encoded with T5, which produces the token-level embeddings that are injected as cross-attention keys and values,
             so every visual token in the DiT can attend over the full text sequence at each block.
         </p>
         <p>
             Classifier-Free Guidance (CFG) helped a lot with output quality. During training, the text condition is randomly dropped some percentage of the time,
-            teaching the model to also generate unconditionally. At inference the guided score is a linear extrapolation:
+            teaching the model to also generate unconditionally. (Dropped it 10% in my specific instance.) At inference the guided score is a linear extrapolation:
+            
             ε<sub>guided</sub> = ε<sub>uncond</sub> + w · (ε<sub>cond</sub> − ε<sub>uncond</sub>).
+            
             Pushing hard in the direction of the conditioned prediction (high guidance weight) cleared up a lot of the muddy, averaged-looking outputs.
         </p>
 
         <h2>Model Training</h2>
         <p>
             Used SoccerNetv2 from HuggingFace — 10 full games with action labels.
-            Split into roughly 2000 five-second training clips.
+            Split into roughly 2,000 five-second training clips.
             Trained the VAE first to convergence, then froze it and trained the DiT on top.
         </p>
 
