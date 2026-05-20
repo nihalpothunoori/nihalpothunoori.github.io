@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laundry Robot - Nihal Pothunoori</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <title>Pipette-Dispenser - Nihal Pothunoori</title
+    <link rel="stylesheet" href="https://cdnjs.cloudflare>.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <style>
         body {
             font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
@@ -74,28 +74,31 @@
 
         .project-video {
             width: 100%;
-            max-width: 350px;
-            height: auto;
-            border: 1px solid #30363d;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-
-        .project-image {
-            width: 100%;
-            max-width: 800px;
-            height: auto;
-            border: 1px solid #30363d;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-        .project-image-setup {
-            width: 100%;
             max-width: 400px;
             height: auto;
             border: 1px solid #30363d;
             border-radius: 5px;
             margin: 20px 0;
+            display: block;
+        }
+
+        .project-image {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            border: 1px solid #30363d;
+            border-radius: 5px;
+            margin: 20px 0;
+            display: block;
+        }
+        .project-image-setup {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border: 1px solid #30363d;
+            border-radius: 5px;
+            margin: 20px 0;
+            display: block;
         }
 
         .tech-tag {
@@ -169,75 +172,57 @@
 </head>
 <body>
     <div class="wrapper">
-        <a href="index.html" class="back-link">← Back to Portfolio</a>
+        <a href="../index.html" class="back-link">← Back to Portfolio</a>
 
-        <h1>Laundry Robot</h1>
-        <h3>Video (2x speed) </h3>
-
-        <!-- Video Element - supports .mov, .mp4, .webm -->
-        <video class="project-video" controls width="400">
-            <source src="/Robot_video.mp4" type="video/mp4">
-        </video>
-        
+        <h1>Pipette Dispenser</h1>
 
         <h2>Overview</h2>
         <p>
-            ROS system uses YOLOv8 model to identify and bound clothing, and then traces a path around them that the robot follows.
+            Graduate student required additional functionality to complete an autosampler for the Autonomous Materials Systems Group at UIUC.
         </p>
-
-        <img src="/laundry_robot_path.png" 
-             alt="Laundry robot pic" class="project-image">
 
         <h2>Technical Details</h2>
         <p>
-            This project would have taken me half the time it did if I had a RGB-Depth camera. Alas, I am broke, so I opted for a workaround with a regular RBG camera.
-            Using three apriltags to serve as reference points, I modeled a plane that would represent the floor of my room.
-            Below is a sort of visualization. The flat plane is the camera frame, and the plane intersecting it is the representation from the apriltags.
+            I spent over 100 hours in Fusion360 over the course of this project. There were two parts: a rudimentary robotic "arm" and an automatic pipette dispenser.
         </p>
-        <img src="/rviz_apriltag.jpg" 
-             alt="Rviz apriltag pic" class="project-image">
+      <p>
+            For the robotic arm, I simply modeled a few stepper motors, and designed brackets to build a structure like so:
+        </p>
+              <img src="robotic_subsystem.png"
+             alt="Robotic subsystem" class="project-image">
+            <p>
+            This allowed us to consider the end-effector in a spherical-coordinate system, where an an end-effector position corresponded to three simple rotations of the stepper motors.
+             This system was mounted on a gantry such that the arm could reach anywhere on the autosampling table easily. The purpose: easily move samples, vials, etc around the crowded table.
+        </p>
         <p>
-            
-            The goal with this: take any pixel from the camera image and convert it to (x,y,z) coordinates where the z=0 plane is represented by the plane created by the apriltags.
-            So in this case, it would be the floor.
-            I modeled this as a ROS2 service that could easily be pinged in other nodes.
-            I then used a YOLOv8 deep learning model to identify and bound the clothing within a rectangle created by the three AprilTags.
-            The ROS2 service makes these points really easy to work with in the 2D plane my robot will manuever in.
-            You can see why this service was vital for this project; without it, SLAM-less localization would have been quite difficult.
-            Quick example:
+          The second system, the pipette dispenser, was done by me from scratch. I settled upon a design that draws pipettes from a hopper one at a time, and dispenses them vertically.
         </p>
-        <video class="project-video" controls>
-    <source src="/clothing_xy_example.mp4" type="video/mp4">
+    <p>
+          As further illustrated in the following diagrams, this system is deined to dispense pipettes regardless of their forwards/backwards orientation. The pipettes, stored in the hopper, are jumbled around by the puhser at the bottom such that one pipette at a time will enter the indexing chamber. The indexing chamber then rotates the pipette and drops it into the orienting chamber, which will then orient it from horizontal to vertical (easier integration with the robotic arm that picks it up).
+          A TOF sensor has been integrated at the bottom so we can identify when the pipette has been dispensed, or if there is a jam. The system uses a servo and stepper motor, and was done in Arduino.
+    
+    </p>
+
+        <img src="outer.png"
+             alt="Pipette dispenser outer view" class="project-image">
+
+        <img src="side_view.png"
+             alt="Pipette dispenser side view" class="project-image">
+
+        <img src="double_pipette.png"
+             alt="Pipette dispenser mechanism" class="project-image">
+<p>
+  The following is a video of an earlier stage of this working prototype. New, improved system works but has yet to be integrated into the autosampler.
+</p>
+<video class="project-video" controls preload="metadata">
+    <source src="early_pipette_.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
-        
-         <p>
-
-             I then used the starting point of the robot (indicated by another AprilTag) to trace through all of these clothing points via a <a href="https://en.wikipedia.org/wiki/Catmull%E2%80%93Rom_spline">Catmull-Rom</a>
-             spline to create a path, such as below.
-        </p>
-        
-        <img src="/laundry_robot_path.png" 
-             alt="path visualization" class="project-image">
-        <p>
-
-            Next came the state estimation.
-            Experimentally finding the LeKiwi's process noise/covariance via encoder data, fused with the covariance and measurements from the AprilTag allowed me a pretty decent position estimate.
-            The ROS2 ekf_localization node did most of the heavy lifting here. I chucked the output and the path into a Stanley controller, and the whole system came together.
-
-            P.S. I communicated with the LeKiwi with their ZMQ protocol, which allowed me to control the robot directly from ROS2 instead of LeKiwi's system.
-            
-            Here was my full setup.
-        </p>
-        
-        <img src="setup.jpg" 
-             alt="System Architecture" class="project-image-setup">
-        <p>
-            This was the final rqt_graph (basically, how everything came together). It looks a little complicated but it's mostly just throwing around the /tf topic to all my nodes.
-        </p>
-        <img src="/laundry_robot_rqt_graph.png" 
-             alt="System Architecture" class="project-image">
-        
+               <p>
+          This is me and my group presenting at our end-of-semester symposium!
+    </p>
+        <img src="symposium_pic.jpg"
+             alt="Symposium presentation" class="project-image">
     </div>
 </body>
 </html>

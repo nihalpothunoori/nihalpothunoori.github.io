@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Soccer Counterfactual Video Generation - Nihal Pothunoori</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        body {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #ffffff;
+            background-color: #0d1117;
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-link {
+            color: #539bf5;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        .back-link:hover {
+            color: #f9e3a8;
+            text-decoration: underline;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #7ee787;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #7ee787;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #21262d;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #ADD8E6;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin: 0 0 20px 0;
+            color: #ffffff;
+        }
+
+        .project-skills {
+            font-size: 0.85rem;
+            opacity: 0.85;
+            margin-bottom: 30px;
+        }
+
+        .project-video-yt {
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 16 / 9;
+            border: 1px solid #30363d;
+            border-radius: 5px;
+            margin: 20px 0;
+            display: block;
+        }
+
+        .project-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border: 1px solid #30363d;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        a {
+            color: #539bf5;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #f9e3a8;
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #21262d;
+            color: #8b949e;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <a href="../index.html" class="back-link">← Back to Portfolio</a>
+
+        <h1>Soccer Counterfactual Video Generation</h1>
+        <p class="project-skills"><strong>Skills:</strong> VAE, LoRA, Diffusion Transformers, Flow Matching</p>
+
+        <iframe class="project-video-yt"
+            src="https://www.youtube.com/embed/ES00rbzp4JY"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+
+        <h2>Overview</h2>
+        <p>
+            Can generate alternate sports realities with text-prompted video generation.
+            Implemented from scratch after reading the Wan paper (VAE, DiT, etc).
+            Experimented with different architectures such as VAEs and Diffusion U-nets before settling on a Wan-based implementation.
+        </p>
+
+        <h2>Architecture</h2>
+        <p>
+            The pipeline encodes input video frames into a latent space using a Variational Autoencoder (VAE),
+            then applies a Diffusion Transformer (DiT) to perform flow-matching-based generation guided by a text prompt.
+            LoRA adapters were used to fine-tune the model on soccer footage, allowing targeted domain adaptation without full retraining.
+        </p>
+
+        <h2>Counterfactual Generation</h2>
+        <p>
+            Given a real clip of a soccer play, the model can generate a plausible alternate version of events based on a text description —
+            for example, changing the outcome of a shot or rewriting a player's movement.
+            The approach separates scene structure (field layout, player positions) from the generative diffusion process,
+            so edits stay grounded in the original scene context.
+        </p>
+    </div>
+</body>
+</html>
