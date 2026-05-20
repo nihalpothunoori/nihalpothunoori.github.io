@@ -89,6 +89,26 @@
             border: 1px solid #30363d;
             border-radius: 5px;
             margin: 20px 0;
+            display: block;
+        }
+
+        .project-image-eq {
+            height: auto;
+            border: none;
+            border-radius: 0;
+            margin: 20px 0;
+            display: block;
+            background: transparent;
+        }
+
+        .project-image-sm {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            border: 1px solid #30363d;
+            border-radius: 5px;
+            margin: 20px 0;
+            display: block;
         }
 
         a {
@@ -116,7 +136,7 @@
         <a href="../index.html" class="back-link">← Back to Portfolio</a>
 
         <h1>Soccer Counterfactual Video Generation</h1>
-        <p class="project-skills"><strong>Skills:</strong> VAE, LoRA, Diffusion Transformers, Flow Matching</p>
+        <p class="project-skills"><strong>Skills:</strong> VAE, Diffusion Transformers, DDPM, T5, CFG</p>
 
         <iframe class="project-video-yt"
             src="https://www.youtube.com/embed/ES00rbzp4JY"
@@ -125,27 +145,146 @@
             allowfullscreen>
         </iframe>
 
-        <h2>Overview</h2>
-        <p>
-            Can generate alternate sports realities with text-prompted video generation.
-            Implemented from scratch after reading the Wan paper (VAE, DiT, etc).
-            Experimented with different architectures such as VAEs and Diffusion U-nets before settling on a Wan-based implementation.
-        </p>
-
         <h2>Architecture</h2>
         <p>
-            The pipeline encodes input video frames into a latent space using a Variational Autoencoder (VAE),
-            then applies a Diffusion Transformer (DiT) to perform flow-matching-based generation guided by a text prompt.
-            LoRA adapters were used to fine-tune the model on soccer footage, allowing targeted domain adaptation without full retraining.
+            Broadly: video frames go into a VAE encoder to produce a compressed latent representation.
+            That latent gets noised and denoised by a Diffusion Transformer (DiT) conditioned on a text prompt,
+            and the VAE decoder reconstructs the final frames from the denoised latent.
+            Implemented from scratch based on the Wan paper.
         </p>
 
-        <h2>Counterfactual Generation</h2>
+        <img src="wan_full.png" alt="Full Wan architecture diagram" class="project-image">
+
+        <h2>VAE</h2>
         <p>
-            Given a real clip of a soccer play, the model can generate a plausible alternate version of events based on a text description —
-            for example, changing the outcome of a shot or rewriting a player's movement.
-            The approach separates scene structure (field layout, player positions) from the generative diffusion process,
-            so edits stay grounded in the original scene context.
+            The VAE compresses a video of shape [1+T, H, W, 3] down to a latent of [1+T/4, H/8, W/8, C].
+            The encoder and decoder stack spatial-only downsampling blocks (which compress each frame independently)
+            with spatio-temporal blocks that operate across both space and time simultaneously.
+            The temporal compression is what lets the diffusion model work on a much shorter, cheaper sequence
+            rather than every individual frame.
         </p>
+
+        <img src="wan_vae.png" alt="VAE architecture with spatio-temporal convolutions" class="project-image">
+
+        <p>
+            The VAE is trained by maximizing the Evidence Lower Bound (ELBO):
+        </p>
+
+        <img src="loss_equation_vae.png" alt="VAE ELBO loss equation" class="project-image-eq">
+
+        <p>
+            Quick walkthrough. The left side is log P(X) — the log likelihood of our training data, which is what we actually want to maximize —
+            minus a KL term D[Q(z|X)||P(z|X)]. Since KL divergence is always ≥ 0 by definition, the right-hand side is always a valid lower bound on log P(X).
+            This means we can ignore that left-side KL entirely and just optimize the right-hand side (the ELBO) as a surrogate.
+        </p>
+        <p>
+            On the right side, there are two terms:
+        </p>
+        <p>
+            <strong>E<sub>z~Q</sub>[log P(X|z)]</strong> — the reconstruction loss. Given a latent z sampled from the encoder's distribution, how well can the decoder reproduce the original video frames? This is essentially your pixel-level L2 loss.
+        </p>
+        <p>
+            <strong>D[Q(z|X)||P(z)]</strong> — KL regularization. This keeps the encoder's learned distribution close to the standard normal prior. Without it, the encoder just memorizes inputs without learning a smooth, generalizable latent space — useless for generation.
+        </p>
+
+        <h3>Posterior Collapse</h3>
+        <p>
+            The first training run produced this:
+        </p>
+
+        <img src="posterior_collapse.jpg" alt="Stagnant video output from posterior collapse" class="project-image-sm">
+
+        <p>
+            Every generated frame was identical. This is posterior collapse.
+            When the KL term dominates early in training, the encoder gets pushed toward outputting the prior (basically all standard normals) before it ever learns to encode anything meaningful.
+            The decoder sees this — the latent z carries zero information about the input — and adapts by learning to ignore z entirely, instead outputting the mode of the training data for every input.
+            The result: a frozen frame no matter what you put in.
+        </p>
+
+        <h2>VQVAE</h2>
+        <p>
+            The obvious fix seemed to be constraining the latent space to a finite codebook of learned embeddings (VQVAE).
+            Instead of outputting a continuous Gaussian, the encoder commits to the nearest codebook vector.
+            This forces the latent to represent real, discrete scene states — no more degenerate solutions.
+            I did the research and built it out.
+        </p>
+        <p>
+            Then came the question of how to noise discrete tokens with DDPM. It's doable — discrete diffusion exists — but it's awkward and non-standard.
+            I also considered swapping diffusion out for a U-Net entirely, but that's not scalable and honestly not that interesting to build.
+            So I scrapped VQVAE and went back to the continuous VAE.
+        </p>
+
+        <h2>Beta Annealing</h2>
+        <p>
+            Instead, I kept the continuous VAE and added a beta schedule to the KL term — linearly annealing β from 0 up to 1 over training.
+            Starting at β=0 effectively removes the KL penalty entirely, letting reconstruction loss dominate and forcing the encoder
+            to actually learn to encode meaningful content before any regularization kicks in.
+            As β increases, the KL term gradually shapes the latent space without ever collapsing it.
+            Both reconstruction and KL loss improved, and the stagnant frames disappeared.
+        </p>
+
+        <h2>Diffusion Transformer</h2>
+        <p>
+            With a working VAE in hand, the diffusion process operates entirely in the compressed latent space.
+            A clean latent z<sub>0</sub> is noised forward to z<sub>t</sub> according to:
+        </p>
+
+        <img src="Noising_and_loss.png" alt="Noising equation and diffusion loss" class="project-image-eq">
+
+        <p>
+            ᾱ<sub>t</sub> is the cumulative noise schedule product. At t=0 the latent is clean; at t=T it's pure Gaussian noise.
+            The model ε<sub>θ</sub> is trained to predict the noise added at each step, given the noised latent z<sub>t</sub>, the timestep t, and the text conditioning τ<sub>θ</sub>(y).
+            Loss is plain MSE on the noise prediction.
+        </p>
+
+        <p>
+            The DiT block handles two conditioning signals — timestep and text:
+        </p>
+
+        <img src="wan_dit.png" alt="DiT block architecture" class="project-image-sm">
+
+        <p>
+            <strong>Timestep</strong>: passed through an MLP, then used for Adaptive Layer Norm (AdaLN) — it modulates the scale and shift of each layer norm inside the block.
+            This lets the model adjust its behavior at different noise levels, which matters a lot: the kind of coarse structure vs. fine detail the model should focus on changes significantly across the noise schedule.
+        </p>
+        <p>
+            <strong>Text</strong>: encoded with T5 (the slides say CLIP — that was a mistake on my part). T5 produces rich token-level embeddings that are injected as cross-attention keys and values,
+            so every visual token in the DiT can attend over the full text sequence at each block.
+        </p>
+        <p>
+            Classifier-Free Guidance (CFG) helped a lot with output quality. During training, the text condition is randomly dropped some percentage of the time,
+            teaching the model to also generate unconditionally. At inference the guided score is a linear extrapolation:
+            ε<sub>guided</sub> = ε<sub>uncond</sub> + w · (ε<sub>cond</sub> − ε<sub>uncond</sub>).
+            Pushing hard in the direction of the conditioned prediction (high guidance weight) cleared up a lot of the muddy, averaged-looking outputs.
+        </p>
+
+        <h2>Model Training</h2>
+        <p>
+            Used SoccerNetv2 from HuggingFace — 10 full games with action labels.
+            Split into roughly 2000 five-second training clips.
+            Trained the VAE first to convergence, then froze it and trained the DiT on top.
+        </p>
+
+        <h2>Inference</h2>
+        <p>
+            Start from pure noise z<sub>T</sub> ~ N(0, I), then iteratively denoise using the reversed equation:
+        </p>
+
+        <img src="Inference_equation.png" alt="DDPM denoising inference equation" class="project-image-eq">
+
+        <p>
+            At each step, the DiT predicts ε̂ given z<sub>t</sub>, t, and the text prompt.
+            That predicted noise gets subtracted out, and a small stochastic term z ~ N(0, I) is added back to keep the process from collapsing to the mean.
+            Repeat T times. The final z<sub>0</sub> goes straight through the VAE decoder, which generates all frames simultaneously — no autoregressive frame-by-frame rollout.
+        </p>
+
+        <p>
+            Full code: <a href="https://github.com/nihalpothunoori/sports_video_gen" target="_blank" rel="noopener noreferrer">github.com/nihalpothunoori/sports_video_gen</a>
+        </p>
+
+        <footer>
+            <p>Nihal Pothunoori</p>
+        </footer>
     </div>
 </body>
 </html>
